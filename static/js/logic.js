@@ -91,12 +91,8 @@ for (var i = 0; i < features.properties; i++) {
     // Conditionals for magnitude
     var color = "";
     // Mag description link: http://www.geo.mtu.edu/UPSeis/magnitude.html
-    // Mag 2.5 or less:	Usually not felt, but can be recorded by seismograph.
-    if (features.properties[i].mag < 2.5) {
-      color = "#FFFFCC";
-    }
     // Mag 2.5 to 5.4: Often felt, but only causes minor damage.
-    else if (features.properties[i].mag < 5.5) {
+    if (features.properties[i].mag < 5.5) {
       color = "#FFFF99";
     }
     // Mag 5.5 to 6.0: Slight damage to buildings and other structures.
