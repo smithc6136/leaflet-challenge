@@ -1,5 +1,3 @@
-// left to do: add legend - see 17.3 Advanced Citi Bike activity
-
 // Store our API endpoint inside queryUrl
 var queryUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojson";
 
@@ -105,38 +103,4 @@ function createMap(earthquakes) {
         collapsed: false
     }).addTo(myMap);
 }
-
-
-
-// CREATE THE LEGEND...
-
-// function createLegend(earthquakeData) {
-//     var info = L.control({
-//         position: "bottomright"
-//     });
-
-// // When the layer control is added, insert a div with the class of "legend"
-// info.onAdd = function () {
-//     var div = L.DomUtil.create("div", "legend");
-//     return div;
-// };
-// // Add the info legend to the map
-// info.addTo(map);
-// }
-
-//     // Call the updateLegend function, which will... update the legend!
-//     updateLegend(updatedAt, stationCount);
-//   });
-// });
-
-// // Update the legend's innerHTML with the last updated time and station count
-// function updateLegend(time, stationCount) {
-//   document.querySelector(".legend").innerHTML = [
-//     "<p>Updated: " + moment.unix(time).format("h:mm:ss A") + "</p>",
-//     "<p class='out-of-order'>Out of Order Stations: " + stationCount.OUT_OF_ORDER + "</p>",
-//     "<p class='coming-soon'>Stations Coming Soon: " + stationCount.COMING_SOON + "</p>",
-//     "<p class='empty'>Empty Stations: " + stationCount.EMPTY + "</p>",
-//     "<p class='low'>Low Stations: " + stationCount.LOW + "</p>",
-//     "<p class='healthy'>Healthy Stations: " + stationCount.NORMAL + "</p>"
-//   ].join("");
-// }
+// left to do: add legend - see 17.3 Advanced Citi Bike activity
