@@ -19,7 +19,51 @@ function createFeatures(earthquakeData) {
     // Create a GeoJSON layer containing the features array on the earthquakeData object
     // Run the onEachFeature function once for each piece of data in the array
     var earthquakes = L.geoJSON(earthquakeData, {
-        onEachFeature: onEachFeature
+        onEachFeature: onEachFeature,
+        pointToLayer: function (feature, latlng) {
+            console.log(feature);
+            // Conditionals for magnitude
+            var color = "";
+            // Color codes: https://www.rapidtables.com/web/color/RGB_Color.html
+            // Mag description link: http://www.geo.mtu.edu/UPSeis/magnitude.html
+            // Mag 2.5 to 5.4: Often felt, but only causes minor damage.
+            if (feature.properties.mag < 5.5) {
+                color = "#0000FF";
+            }
+            // Mag 5.5 to 6.0: Slight damage to buildings and other structures.
+            else if (feature.properties.mag < 6.1) {
+                color = "#FFFF66";
+            }
+            // Mag 6.1 to 6.9: May cause a lot of damage in very populated areas.
+            else if (feature.properties.mag < 7) {
+                color = "#FFFF33";
+            }
+            // Mag 7.0 to 7.9: Major earthquake. Serious damage.
+            else if (feature.properties.mag < 8) {
+                color = "#FFFF00";
+            }
+            // Mag 8.0 or greater: Great earthquake. Can totally destroy communities near the epicenter.
+            else {
+                color = "#CCCC00";
+            }
+            
+            var geojsonMarkerOptions = {
+                fillOpacity: 0.75,
+                color: "white",
+                fillColor: color,
+                // Adjust radius
+                radius: feature.properties.mag * 8
+            }
+            // // Add circles to map
+            // L.circle(features.properties[i].mag, {
+            //     fillOpacity: 0.75,
+            //     color: "white",
+            //     fillColor: color,
+            //     // Adjust radius
+            //     radius: features.properties[i].mag * 20
+            // })// .bindPopup("<h1>" + features.properties[i].place + "</h1> <hr> <h3>Points: " + features.properties[i].time + "</h3>").addTo(myMap);
+            return L.circleMarker(latlng, geojsonMarkerOptions);
+        }
     });
 
     // Sending our earthquakes layer to the createMap function
