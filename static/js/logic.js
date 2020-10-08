@@ -75,3 +75,54 @@ function createMap(earthquakes) {
 
 // Documentation on radius, color, (and opacity if needed):
 // https://leafletjs.com/reference-1.7.1.html#circlemarker
+
+// map base layer types: need satellite, grayscale, outdoors?
+
+// add legend
+
+// add pop ups with additional info
+
+
+// 17.1 Activity 07- radius based on data
+// Loop through the cities array and create one marker for each city object
+// color code reference: https://www.rapidtables.com/web/color/RGB_Color.html
+for (var i = 0; i < features.properties; i++) {
+
+    // Conditionals for magnitude
+    var color = "";
+    // Mag description link: http://www.geo.mtu.edu/UPSeis/magnitude.html
+    // Mag 2.5 or less:	Usually not felt, but can be recorded by seismograph.
+    if (features.properties[i].mag < 2.5) {
+      color = "#FFFFCC";
+    }
+    // Mag 2.5 to 5.4: Often felt, but only causes minor damage.
+    else if (features.properties[i].mag < 5.5) {
+      color = "#FFFF99";
+    }
+    // Mag 5.5 to 6.0: Slight damage to buildings and other structures.
+    else if (features.properties[i].mag < 6.1) {
+      color = "#FFFF66";
+    }
+    // Mag 6.1 to 6.9: May cause a lot of damage in very populated areas.
+    else if (features.properties[i].mag < 7) {
+        color = "#FFFF33";
+    }
+    // Mag 7.0 to 7.9: Major earthquake. Serious damage.
+    else if (features.properties[i].mag < 8) {
+        color = "#FFFF00";
+    }
+    // Mag 8.0 or greater: Great earthquake. Can totally destroy communities near the epicenter.
+    else {
+      color = "#CCCC00";
+    }
+  
+    // Add circles to map
+    L.circle(features.properties[i].mag, {
+      fillOpacity: 0.75,
+      color: "white",
+      fillColor: color,
+      // Adjust radius
+      radius: features.properties[i].mag * 20
+    })// .bindPopup("<h1>" + features.properties[i].place + "</h1> <hr> <h3>Points: " + features.properties[i].time + "</h3>").addTo(myMap);
+  }
+  
