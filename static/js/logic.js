@@ -1,3 +1,5 @@
+// left to do: add legend - see 17.3 Advanced Citi Bike activity
+
 // Store our API endpoint inside queryUrl
 var queryUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojson";
 
@@ -40,7 +42,7 @@ function createFeatures(earthquakeData) {
             else {
                 color = "#009999";
             }
-            
+
             var geojsonMarkerOptions = {
                 fillOpacity: 0.75,
                 color: "white",
@@ -48,14 +50,7 @@ function createFeatures(earthquakeData) {
                 // Adjust radius
                 radius: feature.properties.mag * 4
             }
-            // // Add circles to map
-            // L.circle(features.properties[i].mag, {
-            //     fillOpacity: 0.75,
-            //     color: "white",
-            //     fillColor: color,
-            //     // Adjust radius
-            //     radius: features.properties[i].mag * 20
-            // })// .bindPopup("<h1>" + features.properties[i].place + "</h1> <hr> <h3>Points: " + features.properties[i].time + "</h3>").addTo(myMap);
+
             return L.circleMarker(latlng, geojsonMarkerOptions);
         }
     });
@@ -111,10 +106,14 @@ function createMap(earthquakes) {
     }).addTo(myMap);
 }
 
-// // Create a legend to display information about our map
-// var info = L.control({
-//     position: "bottomright"
-// });
+
+
+// CREATE THE LEGEND...
+
+// function createLegend(earthquakeData) {
+//     var info = L.control({
+//         position: "bottomright"
+//     });
 
 // // When the layer control is added, insert a div with the class of "legend"
 // info.onAdd = function () {
@@ -123,19 +122,7 @@ function createMap(earthquakes) {
 // };
 // // Add the info legend to the map
 // info.addTo(map);
-
-
-// Documentation on radius, color, (and opacity if needed):
-// https://leafletjs.com/reference-1.7.1.html#circlemarker
-
-// map base layer types: need satellite, grayscale, outdoors?
-
-// add legend
-// see 17.3 Advanced Citi Bike activity
-
-
-
-
+// }
 
 //     // Call the updateLegend function, which will... update the legend!
 //     updateLegend(updatedAt, stationCount);
